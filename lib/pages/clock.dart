@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_helloworld/utils/space_box.dart';
+import 'package:intl/intl.dart';
 
 class Clock extends StatelessWidget {
   // This widget is the root of your application.
@@ -24,11 +27,56 @@ class ClockPage extends StatefulWidget {
 }
 
 class _ClockPageState extends State<ClockPage> {
+  var _now = DateTime.now();
+  final DateFormat dateFormatter = new DateFormat('yyyy/MM/dd');
+  final DateFormat timeFormatter = new DateFormat('HH:mm:ss');
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(
+        Duration(seconds: 1),
+        (Timer t) => setState(() {
+              _now = DateTime.now();
+            }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(color: Colors.white),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: new Container(
           padding: new EdgeInsets.all(20.0),
@@ -49,14 +97,14 @@ class _ClockPageState extends State<ClockPage> {
 
   Text textDate(BuildContext context) {
     return Text(
-      '2019/06/02 (Tue)',
+      dateFormatter.format(_now),
       style: TextStyle(fontSize: 20),
     );
   }
 
   Text textTime(BuildContext context) {
     return Text(
-      '12:34:56 ☀️',
+      timeFormatter.format(_now),
       style: TextStyle(fontSize: 50),
     );
   }
