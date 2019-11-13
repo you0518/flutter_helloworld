@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_helloworld/components/side_menu.dart';
 
 class Login extends StatelessWidget {
   static const String routeName = '/';

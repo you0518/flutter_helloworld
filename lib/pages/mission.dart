@@ -6,7 +6,7 @@ class Mission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _tabs = [
+    final _tabs = [
       Tab(text: 'week', icon: Icon(Icons.calendar_view_day)),
       Tab(text: 'month', icon: Icon(Icons.calendar_view_day)),
       Tab(text: 'year', icon: Icon(Icons.calendar_view_day))

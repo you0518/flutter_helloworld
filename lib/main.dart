@@ -8,8 +8,13 @@ void main() {
   runApp(new MaterialApp(
     title: 'Navigation with Routes',
     debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      brightness: Brightness.light,
+      primaryColor: Colors.redAccent,
+      accentColor: Colors.cyan[600],
+    ),
     initialRoute: Routes.login,
-    routes: <String, WidgetBuilder>{
+    routes: {
       Routes.login: (context) => Login(),
       Routes.clock: (context) => Clock(),
       Routes.mission: (context) => Mission(),
