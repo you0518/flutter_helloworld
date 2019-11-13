@@ -1,12 +1,26 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_helloworld/components/side_menu.dart';
 import 'package:flutter_helloworld/utils/space_box.dart';
 import 'package:intl/intl.dart';
 
+class Clock extends StatelessWidget {
+  static const String routeName = '/clock';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Clock'),
+        ),
+        drawer: SideMenu(),
+        body: ClockPage());
+  }
+}
+
 class ClockPage extends StatefulWidget {
-  ClockPage({Key key, this.title}) : super(key: key);
-  final String title;
+  ClockPage({Key key}) : super(key: key);
 
   @override
   _ClockPageState createState() => _ClockPageState();
@@ -28,57 +42,20 @@ class _ClockPageState extends State<ClockPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(color: Colors.white),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-      body: new Container(
-          padding: new EdgeInsets.all(20.0),
-          child: Center(
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                textDate(context),
-                SpaceBox.height(20),
-                textTime(context),
-                SpaceBox.height(20),
-                buttonClock(context)
-              ],
-            ),
-          )),
-    );
+    return Container(
+        padding: new EdgeInsets.all(20.0),
+        child: Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              textDate(context),
+              SpaceBox.height(20),
+              textTime(context),
+              SpaceBox.height(20),
+              buttonClock(context)
+            ],
+          ),
+        ));
   }
 
   Text textDate(BuildContext context) {
@@ -102,7 +79,7 @@ class _ClockPageState extends State<ClockPage> {
         children: <Widget>[
           RaisedButton(
             child: Text('出勤'),
-            onPressed: () => Navigator.of(context).pushNamed('/mission'),
+            onPressed: () => null,
           ),
           SpaceBox.width(20),
           RaisedButton(

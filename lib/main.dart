@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'pages/login.dart';
-import 'pages/clock.dart';
-import 'pages/mission.dart';
+import 'package:flutter_helloworld/pages/clock.dart';
+import 'package:flutter_helloworld/pages/login.dart';
+import 'package:flutter_helloworld/pages/mission.dart';
+import 'routes/routes.dart';
 
 void main() {
   runApp(new MaterialApp(
     title: 'Navigation with Routes',
     debugShowCheckedModeBanner: false,
-    initialRoute: '/',
+    initialRoute: Routes.login,
     routes: <String, WidgetBuilder>{
-      '/': (_) => new LoginPage(
-            title: 'login',
-          ),
-      '/clock': (_) => new ClockPage(
-            title: 'clock',
-          ),
-      '/mission': (_) => new MissionPage(title: 'mission'),
+      Routes.login: (context) => Login(),
+      Routes.clock: (context) => Clock(),
+      Routes.mission: (context) => Mission(),
     },
   ));
 }
@@ -38,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(title: 'Login'),
+      home: MyHomePage(title: 'Login'),
     );
   }
 }

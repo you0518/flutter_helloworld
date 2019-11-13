@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_helloworld/components/side_menu.dart';
+
+class Login extends StatelessWidget {
+  static const String routeName = '/';
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Login'),
+        ),
+        body: LoginPage());
+  }
+}
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key, this.title}) : super(key: key);
+  LoginPage({Key key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -11,8 +26,6 @@ class LoginPage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
-  final String title;
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -25,23 +38,18 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: new Container(
-          padding: new EdgeInsets.all(20.0),
-          child: new Form(
-            key: this._formKey,
-            child: new ListView(
-              children: <Widget>[
-                formEmployeeId(context),
-                formPassword(context),
-                formSubmit(context)
-              ],
-            ),
-          )),
-    );
+    return new Container(
+        padding: new EdgeInsets.all(20.0),
+        child: new Form(
+          key: this._formKey,
+          child: new ListView(
+            children: <Widget>[
+              formEmployeeId(context),
+              formPassword(context),
+              formSubmit(context)
+            ],
+          ),
+        ));
   }
 
   TextFormField formEmployeeId(BuildContext context) {
