@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
 import 'pages/clock.dart';
+import 'pages/mission.dart';
 
 void main() {
   runApp(new MaterialApp(
     title: 'Navigation with Routes',
+    debugShowCheckedModeBanner: false,
+    initialRoute: '/',
     routes: <String, WidgetBuilder>{
-      '/': (_) => new Login(),
-      '/clock': (_) => new Clock(),
+      '/': (_) => new LoginPage(
+            title: 'login',
+          ),
+      '/clock': (_) => new ClockPage(
+            title: 'clock',
+          ),
+      '/mission': (_) => new MissionPage(title: 'mission'),
     },
   ));
 }

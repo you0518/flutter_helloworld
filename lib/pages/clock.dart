@@ -4,20 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_helloworld/utils/space_box.dart';
 import 'package:intl/intl.dart';
 
-class Clock extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Clock',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ClockPage(title: 'Clock'),
-    );
-  }
-}
-
 class ClockPage extends StatefulWidget {
   ClockPage({Key key, this.title}) : super(key: key);
   final String title;
@@ -116,7 +102,7 @@ class _ClockPageState extends State<ClockPage> {
         children: <Widget>[
           RaisedButton(
             child: Text('出勤'),
-            onPressed: () => null,
+            onPressed: () => Navigator.of(context).pushNamed('/mission'),
           ),
           SpaceBox.width(20),
           RaisedButton(

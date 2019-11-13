@@ -1,19 +1,4 @@
 import 'package:flutter/material.dart';
-import 'clock.dart';
-
-class Login extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(title: 'Login'),
-    );
-  }
-}
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -112,11 +97,6 @@ class _LoginPageState extends State<LoginPage> {
     print('Email: ${this._employeeId}');
     print('Password: ${this._password}');
 
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        settings: RouteSettings(name: "/clock"),
-        builder: (BuildContext context) => Clock(),
-      ),
-    );
+    Navigator.of(context).pushNamed('/clock');
   }
 }
