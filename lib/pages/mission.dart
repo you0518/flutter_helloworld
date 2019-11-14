@@ -31,36 +31,48 @@ class MissionPage extends StatefulWidget {
 }
 
 class _MissionPageState extends State<MissionPage> {
-  TabController _tabController;
-  final _missionList = [
-    {'title': 'hoge', 'content': 'content'},
-    {'title': 'mugo', 'content': 'content'},
-    {'title': 'poka', 'content': 'content'},
-    {'title': 'tere', 'content': 'content'},
+  final _dailyMissionList = [
+    {'title': 'hoge', 'content': 'content', 'icon': Icon(Icons.mic)},
+    {'title': 'mugo', 'content': 'content', 'icon': Icon(Icons.mic)},
+    {'title': 'poka', 'content': 'content', 'icon': Icon(Icons.mic)},
+    {'title': 'tere', 'content': 'content', 'icon': Icon(Icons.mic)},
+  ];
+  final _monthlyMissionList = [
+    {'title': 'hoge', 'content': 'content', 'icon': Icon(Icons.save)},
+    {'title': 'mugo', 'content': 'content', 'icon': Icon(Icons.save)},
+    {'title': 'poka', 'content': 'content', 'icon': Icon(Icons.save)},
+    {'title': 'tere', 'content': 'content', 'icon': Icon(Icons.save)},
+    {'title': 'tere', 'content': 'content', 'icon': Icon(Icons.save)},
+  ];
+
+  final _yearlyMissionList = [
+    {'title': 'hoge', 'content': 'content', 'icon': Icon(Icons.scanner)},
+    {'title': 'mugo', 'content': 'content', 'icon': Icon(Icons.scanner)},
+    {'title': 'poka', 'content': 'content', 'icon': Icon(Icons.scanner)},
+    {'title': 'tere', 'content': 'content', 'icon': Icon(Icons.scanner)},
+    {'title': 'tere', 'content': 'content', 'icon': Icon(Icons.scanner)},
+    {'title': 'tere', 'content': 'content', 'icon': Icon(Icons.scanner)},
   ];
   @override
   Widget build(BuildContext context) {
-    var body = TabBarView(
-      controller: _tabController,
+    return TabBarView(
       children: [
-        _getMissionListView(),
-        Icon(Icons.directions_transit),
-        Icon(Icons.directions_bike),
+        _getMissionListView(_dailyMissionList),
+        _getMissionListView(_monthlyMissionList),
+        _getMissionListView(_yearlyMissionList),
       ],
     );
-
-    return body;
   }
 
-  ListView _getMissionListView() {
+  ListView _getMissionListView(List<Map<String, Object>> missionList) {
     // ListViewのアイテムを動的に生成する場合は、builderを使う
     return ListView.builder(
-      itemCount: _missionList.length,
+      itemCount: missionList.length,
       itemBuilder: (BuildContext context, int index) {
-        var mission = _missionList[index];
+        var mission = missionList[index];
         return Container(
           child: ListTile(
-            leading: Icon(Icons.airplay),
+            leading: mission['icon'],
             title: Text(mission['title']),
             subtitle: Text(mission['content']),
             onTap: () => showDialog(
